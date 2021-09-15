@@ -1,10 +1,41 @@
-import React from 'react';
-import { StatusBar } from 'react-native';
-import { SafeAreaView, Text, View } from './components';
+import React, { useState } from 'react';
+import AppRoute from './routes';
+import store from './redux';
+import { Platform, StatusBar } from 'react-native';
+import { Root } from 'react-native-ts-aprakoso98';
+import { SafeAreaView } from 'src/components'
+import { colors } from './utils/constants';
+import { Provider, useDispatch } from 'react-redux';
+import { SheetRoot } from './components/BottomSheet';
+import ModalRoot from './components/ModalRoot';
+import { useEffect } from 'react';
+import { actionRoute, initStateRoute } from './redux/app';
+import { useLayoutEffect } from 'react';
+
+const AppContainer = () => {
+  const dispatch = useDispatch()
+  const [loaded, setLoaded] = useState(false)
+  useEffect(() => {
+    dispatch(actionRoute(initStateRoute))
+  }, [])
+  useLayoutEffect(() => {
+    setLoaded(true)
+  }, [])
+  return <SheetRoot>
+    <ModalRoot>
+      {loaded && <AppRoute />}
+    </ModalRoot>
+  </SheetRoot>
+}
 
 const App = () => {
-  return <SafeAreaView flex backgroundColor="light">
-    <StatusBar barStyle="dark-content" />
+  return <SafeAreaView backgroundColor="light" flex>
+    <Root>
+      <StatusBar barStyle="dark-content" backgroundColor={Platform.OS === 'android' ? colors.dark : colors.light} />
+      <Provider store={store}>
+        <AppContainer />
+      </Provider>
+    </Root>
   </SafeAreaView>
 }
 
