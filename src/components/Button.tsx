@@ -12,7 +12,7 @@ export const Btn = createButton({
 			justify: 'center',
 			textProps: {
 				size: 't_placeholder',
-				font: 'Bold'
+				// font: 'Bold'
 			},
 			style: [{
 				minHeight: sizes.box,
@@ -70,7 +70,8 @@ export const ButtonSquare = (props: ButtonSquareProps) => {
 		color={buttonColors[color ?? 'primary']}
 		children={typeof children === 'string' ?
 			children?.toUpperCase() : children
-		} {...rest}
+		}
+		{...rest}
 	/>
 }
 

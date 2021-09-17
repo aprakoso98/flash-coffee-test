@@ -1,9 +1,9 @@
 import React, { createRef } from 'react';
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer, NavigationContainerRef } from '@react-navigation/native'
-import { useSelector } from 'src/redux';
 import Transition from './transition';
 import Home from 'src/screens/Home';
+import Upcoming from 'src/screens/Upcoming';
 
 export const Stack = createStackNavigator()
 
@@ -13,6 +13,7 @@ const AppRoute = () => {
 	return <NavigationContainer ref={navigationRef}>
 		<Stack.Navigator screenOptions={{ header: noop, cardStyleInterpolator: Transition.horizontalSlide }}>
 			<Stack.Screen name="/" component={Home} />
+			<Stack.Screen name="/upcoming" component={Upcoming} />
 		</Stack.Navigator>
 	</NavigationContainer>
 }

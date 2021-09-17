@@ -9,30 +9,31 @@ type HeaderProps = {
 	title: string
 	onPress?: () => void
 	renderRightAccessory?: () => JSX.Element
+	renderLeftAccessory?: () => JSX.Element
 }
 const Header = (props: HeaderProps) => {
-	const { title, onPress, renderRightAccessory: RAccs = noop } = props
-	return <View>
-		<BoxSpace.B />
-		<Wrapper itemsCenter>
-			<Btn
-				width="70%"
+	const { title, onPress, renderLeftAccessory: LAccs, renderRightAccessory: RAccs = noop } = props
+	return <Wrapper backgroundColor="primary" height={50} justifyBetween itemsCenter>
+		<BoxSpace.C />
+		<View itemsStart width="15%">
+			{LAccs ? <LAccs /> : <Btn
+				width="100%"
 				justify="flex-start"
 				onPress={onPress}
 				disabled={!onPress}
-				style={{ paddingLeft: 0 }}
-				color={['']}
-			>
-				{onPress && <>
-					<Icon name="chevron-left" />
-					<BoxSpace.B />
-				</>}
-				<Text numberOfLines={1} font="Bold">{title}</Text>
-			</Btn>
+				style={{ paddingHorizontal: 0 }}
+				color={['']}>
+				{onPress && <Icon size="t_title" name="chevron-left" />}
+			</Btn>}
+		</View>
+		<BoxSpace.A />
+		<Text flex alignCenter numberOfLines={1} font="Bold">{title?.toUpperCase()}</Text>
+		<BoxSpace.A />
+		<View itemsEnd width="15%">
 			<RAccs />
-		</Wrapper>
+		</View>
 		<BoxSpace.C />
-	</View>
+	</Wrapper>
 }
 
 export default Header

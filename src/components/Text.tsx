@@ -2,12 +2,17 @@ import React from 'react';
 import { colors, fonts, textSizes } from 'src/utils/constants';
 import { createText } from 'react-native-ts-aprakoso98';
 
-const Text = createText({
+const _Text = createText({
 	colors, fonts, sizes: textSizes,
 	defaultColor: 'dark',
-	defaultFont: 'Default',
+	// defaultFont: 'Default',
 	defaultSize: 't_default'
 })
+
+const Text = (props: GetProps<typeof _Text>) => {
+	const { font, ...rest } = props
+	return _Text(rest)
+}
 
 export const TextGrey = (props: GetProps<typeof Text>) => {
 	const { color, ...rest } = props

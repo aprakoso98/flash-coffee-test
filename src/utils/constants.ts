@@ -3,28 +3,19 @@ import { getBundleId, getVersion, getBuildNumber } from 'react-native-device-inf
 import properties from 'src/../../envs/gradle-properties.json'
 
 export const colors = {
-	transparent: 'rgba(0,0,0,0)',
-	dTransparent: 'rgba(0,0,0,.5)',
-	gradientStart: '#3C6EE3',
-	gradientEnd: '#009DFF',
-	warning: '#FF8F3C',
-	alertLight: '#FCF1C3',
-	alert: '#CEA00D',
-	dangerLight: '#FFE6E6',
-	danger: '#E60F0F',
-	successLight: '#EAFCEF',
-	success: '#54A85B',
-	primaryLight: '#DFE3FD',
-	primary: '#3C6EE3',
-	lightBlue: '#38D2FF',
-	darkGrey: '#8D9EBA',
-	dark: '#5D5D5D',
-	darker: '#000000',
+	primary: '#FFDD02',
+	success: '#5CC4BA',
+	danger: '#FA285A',
+	dark: '#000000',
 	light: '#FFFFFF',
+	warning: '#FA2E5F',
+	transparent: 'rgba(0,0,0,0)',
+	alertLight: '#FCF1C3',
+	blue: '#3C6EE3',
+	darkGrey: '#8D9EBA',
+	greySoft: '#F4F4F4',
+	greyHard: '#D1D1D1',
 	placeholder: '#D5DDEA',
-	get placeholderSoft() {
-		return `${this.placeholder}80`
-	}
 }
 
 export const sizes = {
@@ -57,28 +48,37 @@ export const fonts = {
 }
 
 export type BtnColor = Tuple<TypeProp<typeof colors>, 1 | 2 | 3>
-export type BtnKey = 'primary' | 'secondary' | 'unused' | 'logout' | 'transparent' | 'tPrimary' | 'tSecondary' | 'bSecondary'
+export type BtnKey = 'primary' | 'secondary' | 'logout' | 'transparent' | 'tPrimary' | 'tSecondary'
 export type ButtonColorsType = Record<BtnKey, BtnColor>
 export const buttonColors: ButtonColorsType = {
 	primary: ['primary', 'light', 'transparent'],
 	secondary: ['transparent', 'primary', 'primary'],
-	unused: ['placeholder', 'light', 'transparent'],
 	logout: ['light', 'danger', 'danger'],
 	transparent: ['transparent', 'dark', 'transparent'],
 	tPrimary: ['transparent', 'primary', 'transparent'],
 	tSecondary: ['transparent', 'dark', 'transparent'],
-	bSecondary: ['transparent', 'darkGrey', 'darkGrey'],
 }
 
 type NtfColor = Tuple<TypeProp<typeof colors>, 1 | 2 | 3>
 type NotificationColorsType = Record<NtfKey, NtfColor>
-export type NtfKey = 'card' | 'danger' | 'success' | 'info' | 'alert'
+export type NtfKey = 'card' | 'danger' | 'success' | 'info'
 export const notificationColors: NotificationColorsType = {
-	card: ['light', 'dark', 'darkGrey'],
-	danger: ['dangerLight', 'danger', 'danger'],
-	success: ['successLight', 'success', 'success'],
-	info: ['primaryLight', 'primary', 'primary'],
-	alert: ['alertLight', 'alert', 'alert'],
+	card: ['light', 'dark', 'transparent'],
+	danger: ['danger', 'danger', 'danger'],
+	success: ['success', 'success', 'success'],
+	info: ['primary', 'primary', 'primary'],
+}
+
+export const IS_DEV_APP = getBundleId() === 'com.awan'
+
+export const MONTH_NAME = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
+export const monthMoment = <T extends Moment | string>(format?: string) => {
+	return MONTH_NAME.reduce((ret, _, i) => {
+		const date = moment().add(i, 'M').startOf('M')
+		const data = (typeof format === 'string' ? date.format(format) : date) as T
+		if (i >= moment().get('M')) ret.push(data)
+		return ret
+	}, [] as T[])
 }
 
 export const VERSION = {

@@ -29,7 +29,7 @@ const AppContainer = () => {
 }
 
 const App = () => {
-  return <SafeAreaView backgroundColor="light" flex>
+  return <SafeAreaView backgroundColor="primary" flex>
     <Root>
       <StatusBar barStyle="dark-content" backgroundColor={Platform.OS === 'android' ? colors.dark : colors.light} />
       <Provider store={store}>

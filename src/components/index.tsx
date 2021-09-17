@@ -7,7 +7,16 @@ export const { SafeAreaView, Wrapper, View } = createView({ colors })
 
 export const { Divider } = createView({ colors, defaultBackgroundColor: 'placeholder' })
 
-export const { View: Card } = createView({ colors })
+export const { View: Card } = createView({
+	colors,
+	props: {
+		backgroundColor: 'greySoft',
+		style: {
+			borderRadius: sizes._radius,
+			padding: sizes.padding,
+		}
+	}
+})
 
 export const { View: Container } = createView({
 	colors, props: {
@@ -22,7 +31,7 @@ export const { View: Container } = createView({
 export const { View: WrapperItem } = createView({
 	colors, props: {
 		style: {
-			paddingHorizontal: sizes.container,
+			paddingHorizontal: sizes.contentLarge,
 		}
 	}
 })
@@ -71,7 +80,7 @@ type TheBoxSpaceProps = GetProps<typeof View>
 	& { color?: keyof typeof colors, size?: keyof typeof sizes }
 const TheBoxSpace = ({ style, color, size = 'padding', ...rest }: TheBoxSpaceProps) => {
 	return <View
-		// backgroundColor={__DEV__ ? color : undefined}
+		backgroundColor={__DEV__ ? color : undefined}
 		style={{ borderRadius: rest.backgroundColor ? sizes._radius : 0, ...style }}
 		width={sizes[size]}
 		height={sizes[size]}
@@ -86,11 +95,11 @@ export const BoxSpace = {
 	C: (props: TheBoxSpaceProps) =>
 		<TheBoxSpace color="success" size="contentLarge" {...props} />,
 	D: (props: TheBoxSpaceProps) =>
-		<TheBoxSpace color="alertLight" size="container" {...props} />,
+		<TheBoxSpace color="dark" size="container" {...props} />,
 	E: (props: TheBoxSpaceProps) =>
 		<TheBoxSpace color="warning" size="box" {...props} />,
 	F: (props: TheBoxSpaceProps) =>
-		<TheBoxSpace color="lightBlue" size="header" {...props} />,
+		<TheBoxSpace color="blue" size="header" {...props} />,
 	G: (props: TheBoxSpaceProps) =>
-		<TheBoxSpace color="dangerLight" size="pinSpacing" {...props} />,
+		<TheBoxSpace color="alertLight" size="pinSpacing" {...props} />,
 }
