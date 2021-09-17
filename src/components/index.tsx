@@ -1,17 +1,29 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
+import { ActivityIndicator as AI, FlatList as FL, FlatListProps, ListRenderItemInfo, ViewStyle } from 'react-native';
 import { createView, createButton } from 'react-native-ts-aprakoso98'
 import { colors, fonts, sizes, textSizes } from 'src/utils/constants';
 
-export const { SafeAreaView, Divider, Wrapper, View } = createView({
-	colors
-})
+export const { SafeAreaView, Wrapper, View } = createView({ colors })
+
+export const { Divider } = createView({ colors, defaultBackgroundColor: 'placeholder' })
 
 export const { View: Card } = createView({ colors })
 
 export const { View: Container } = createView({
 	colors, props: {
 		backgroundColor: 'light',
-		flex: 1
+		flex: 1,
+		style: {
+			paddingBottom: sizes.container,
+		}
+	}
+})
+
+export const { View: WrapperItem } = createView({
+	colors, props: {
+		style: {
+			paddingHorizontal: sizes.container,
+		}
 	}
 })
 
@@ -28,11 +40,38 @@ export const TouchableOpacity = createButton({
 	}
 })
 
+type AIProps = {
+	color?: keyof typeof colors
+	size?: keyof typeof sizes
+}
+export const ActivityIndicator = (props: AIProps) => {
+	const { color = 'darkGrey', size = 'contentLarge' } = props
+	return <AI color={colors[color]} size={sizes[size]} />
+}
+
+export type FLProps<T> = Omit<FlatListProps<T>, 'renderItem'> & {
+	renderItem: (props: { i: number, isLast: boolean } & ListRenderItemInfo<T>) => ReactElement | null
+}
+export const FlatList = <T,>(props: FLProps<T>) => {
+	const { keyExtractor, data = [], renderItem: RItem, style, ...rest } = props
+	return <FL
+		data={data}
+		renderItem={({ index, item, separators }) => {
+			const isLast = index === (data?.length ?? 0) - 1
+			const props = { index, item, i: index, separators, isLast }
+			return <RItem {...props} />
+		}}
+		style={{ paddingHorizontal: sizes.container, ...style as ViewStyle }}
+		keyExtractor={(_, i) => i.toString()}
+		{...rest}
+	/>
+}
+
 type TheBoxSpaceProps = GetProps<typeof View>
 	& { color?: keyof typeof colors, size?: keyof typeof sizes }
 const TheBoxSpace = ({ style, color, size = 'padding', ...rest }: TheBoxSpaceProps) => {
 	return <View
-		backgroundColor={__DEV__ ? color : undefined}
+		// backgroundColor={__DEV__ ? color : undefined}
 		style={{ borderRadius: rest.backgroundColor ? sizes._radius : 0, ...style }}
 		width={sizes[size]}
 		height={sizes[size]}
