@@ -13,7 +13,7 @@ export const { View: Card } = createView({
 		backgroundColor: 'greySoft',
 		style: {
 			borderRadius: sizes._radius,
-			padding: sizes.padding,
+			padding: sizes.content,
 		}
 	}
 })

@@ -23,6 +23,7 @@ const Upcoming = ({ navigation, route }) => {
 								<Text>MON</Text>
 								<Text>{_}</Text>
 							</View>
+							<BoxSpace.A />
 							<Card flex>
 								<Text>Location</Text>
 								<Wrapper itemsCenter>

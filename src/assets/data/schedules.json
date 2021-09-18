@@ -1,0 +1,18 @@
+[
+    {
+        "date": "2021-09-17",
+        "clockIn": "",
+        "clockOut": "",
+        "location": "",
+        "eventName": "",
+        "hasSchedule": false
+    },
+    {
+        "date": "2021-09-18",
+        "clockIn": "",
+        "clockOut": "",
+        "location": "",
+        "eventName": "",
+        "hasSchedule": true
+    }
+]

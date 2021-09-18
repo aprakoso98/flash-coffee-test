@@ -38,7 +38,8 @@ export const textSizes = {
 	t_placeholder: 14,
 	t_default: 16,
 	t_title: 20,
-	t_big: 22
+	t_big: 22,
+	get x_big() { return this.t_big * 2 }
 }
 
 export const fonts = {
