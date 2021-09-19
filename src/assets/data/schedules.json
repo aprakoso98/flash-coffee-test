@@ -1,18 +1,24 @@
-[
-    {
-        "date": "2021-09-17",
-        "clockIn": "",
-        "clockOut": "",
-        "location": "",
+{
+    "2021-09-15": {
+        "id": "123456",
+        "date": "2021-09-15",
+        "clockIn": "08:00",
+        "clockOut": "17:00",
+        "clockInTime": "",
+        "clockOutTime": "",
+        "location": "Mediterania garden residence",
         "eventName": "",
         "hasSchedule": false
     },
-    {
-        "date": "2021-09-18",
-        "clockIn": "",
-        "clockOut": "",
-        "location": "",
+    "2021-09-19": {
+        "id": "1234567",
+        "date": "2021-09-19",
+        "clockIn": "08:00",
+        "clockOut": "17:00",
+        "clockInTime": "07:57",
+        "clockOutTime": "",
+        "location": "Mediterania garden residence",
         "eventName": "",
         "hasSchedule": true
     }
-]
+}

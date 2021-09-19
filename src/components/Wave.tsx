@@ -1,20 +1,51 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
+import { sizes } from 'src/utils/constants';
+import { View, Wrapper } from './';
+
+const Waves = (props: Props) => {
+	const { baseColor = 'alertLight', color = 'primary' } = props
+	const { width, height } = Dimensions.get('window')
+	const [a, b] = [sizes.container, sizes.box]
+	return <View row>
+		<View
+			backgroundColor={baseColor}
+			height={a}
+			width={b}
+			style={{
+				borderTopEndRadius: a,
+				borderTopStartRadius: a,
+			}}
+		/>
+		<View backgroundColor={baseColor}>
+			<View
+				backgroundColor={color}
+				height={a}
+				width={b}
+				style={{
+					borderBottomEndRadius: a,
+					borderBottomStartRadius: a,
+				}}
+			/>
+		</View>
+	</View>
+}
 
 const Wave = () => {
-	const { width, height } = Dimensions.get('window')
-	return <Svg
-		// height={height}
-		// width={width}
-		viewBox="0 0 1440 320"
-		style={{ transform: [{ rotate: '180deg' }], flex: 1, backgroundColor: 'green' }}
-	>
-		<Path
-			fill="#5000ca"
-			d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,208C1248,224,1344,192,1392,176L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
-		/>
-	</Svg>
+	return null
+	return <View>
+		<View row>
+			{[1, 2, 3, 4, 5, 6, 7, 8, 9].rMap(() => {
+				return <Waves />
+			})}
+		</View>
+		<View absolute row left={-sizes.box} style={{ opacity: .5 }}>
+			{[1, 2, 3, 4, 5, 6, 7, 8, 9].rMap(() => {
+				return <Waves color="primary" baseColor="blue" />
+			})}
+		</View>
+	</View>
 }
 
 export default Wave

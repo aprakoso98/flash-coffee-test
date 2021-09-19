@@ -18,6 +18,17 @@ export const { View: Card } = createView({
 	}
 })
 
+export const { View: Notification } = createView({
+	colors,
+	props: {
+		backgroundColor: 'greySoft',
+		style: {
+			borderRadius: sizes._radius,
+			padding: sizes.padding,
+		}
+	}
+})
+
 export const { View: Container } = createView({
 	colors, props: {
 		backgroundColor: 'light',

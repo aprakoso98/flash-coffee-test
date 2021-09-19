@@ -12,8 +12,8 @@ export const navigationRef = createRef<NavigationContainerRef<{}>>()
 const AppRoute = () => {
 	return <NavigationContainer ref={navigationRef}>
 		<Stack.Navigator screenOptions={{ header: noop, cardStyleInterpolator: Transition.horizontalSlide }}>
-			<Stack.Screen name="/upcoming" component={Upcoming} />
 			<Stack.Screen name="/" component={Home} />
+			<Stack.Screen name="/upcoming" component={Upcoming} />
 		</Stack.Navigator>
 	</NavigationContainer>
 }

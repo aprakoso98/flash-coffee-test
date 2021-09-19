@@ -5,7 +5,7 @@ import { createText } from 'react-native-ts-aprakoso98';
 const Text = createText({
 	colors, fonts, sizes: textSizes,
 	defaultColor: 'dark',
-	defaultFont: 'SemiBold',
+	defaultFont: 'Default',
 	defaultSize: 't_default'
 })
 
@@ -17,6 +17,11 @@ export const TextGrey = (props: GetProps<typeof Text>) => {
 export const TextTitle = (props: GetProps<typeof Text>) => {
 	const { font, size, ...rest } = props
 	return <Text font="SemiBold" size="x_big" {...rest} />
+}
+
+export const TextSemi = (props: GetProps<typeof Text>) => {
+	const { font, ...rest } = props
+	return <Text font="SemiBold" {...rest} />
 }
 
 export const TextBold = (props: GetProps<typeof Text>) => {
@@ -33,7 +38,7 @@ export const TextUnder = (props: GetProps<typeof Text>) => {
 }
 
 export const TextPlaceholder = (props: GetProps<typeof Text>) => {
-	return <Text color="darkGrey" {...props} />
+	return <Text size="t_placeholder" {...props} />
 }
 
 export const TextBig = (props: GetProps<typeof Text>) => {
