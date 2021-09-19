@@ -1,0 +1,18 @@
+{
+    "$schema":"https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/tsconfig.json",
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "ESNext",
+        "declaration": true,
+        "outDir": "build",
+        "strict": true,
+        "jsx": "react-native",
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true
+    },
+    "exclude": [
+        "node_modules",
+        "**/__tests__/*"
+    ]
+}
