@@ -91,7 +91,7 @@ type TheBoxSpaceProps = GetProps<typeof View>
 	& { color?: keyof typeof colors, size?: keyof typeof sizes }
 const TheBoxSpace = ({ style, color, size = 'padding', ...rest }: TheBoxSpaceProps) => {
 	return <View
-		backgroundColor={__DEV__ ? color : undefined}
+		// backgroundColor={__DEV__ ? color : undefined}
 		style={{ borderRadius: rest.backgroundColor ? sizes._radius : 0, ...style }}
 		width={sizes[size]}
 		height={sizes[size]}

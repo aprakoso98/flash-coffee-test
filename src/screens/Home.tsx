@@ -1,7 +1,7 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { LayoutRectangle, ScrollView } from 'react-native';
-import { useTicker } from 'react-native-ts-aprakoso98';
+import { Image, useTicker } from 'react-native-ts-aprakoso98';
 import { useDispatch } from 'react-redux';
 import { ActivityIndicator, BoxSpace, Card, Container, Notification, TouchableOpacity, View, Wrapper, WrapperItem } from 'src/components';
 import Button from 'src/components/Button';
@@ -16,6 +16,37 @@ import { sizes } from 'src/utils/constants';
 
 const Home = ({ navigation }) => {
 	const dispatch = useDispatch()
+	useEffect(() => {
+		dispatch(actionSchedules())
+	}, [])
+	return <Container>
+		<Header
+			renderLeftAccessory={() => <View style={{ borderRadius: sizes.box, overflow: 'hidden' }} height={sizes.container} width={sizes.container}>
+				<Image resizeMode="contain" source={require('src/assets/images/bambang.png')} />
+			</View>}
+			title="Live attendance"
+		/>
+		<Timer />
+		<BoxSpace.B />
+		<ScrollView>
+			<WrapperItem>
+				<TodaySchedules navigation={navigation} />
+				<BoxSpace.B />
+				<NextSchedules navigation={navigation} />
+			</WrapperItem>
+		</ScrollView>
+		<BoxSpace.B />
+		<WrapperItem row>
+			<Button flex color="success" onPress={clockIn}>CLOCK IN</Button>
+			<BoxSpace.B />
+			<Button color="secondary" onPress={clockOut} flex>CLOCK OUT</Button>
+		</WrapperItem>
+	</Container>
+}
+
+export default Home
+
+const Timer = () => {
 	const [now, setNow] = useState(moment())
 	const hour = now.format('HH : mm : ss')
 	const date = now.format('dddd, D MMM YYYY')
@@ -27,40 +58,13 @@ const Home = ({ navigation }) => {
 			clearTimeout(interval)
 		}
 	}, [now])
-	useEffect(() => {
-		dispatch(actionSchedules())
-	}, [])
-	return <Container>
-		<Header
-			renderLeftAccessory={() => <BoxSpace.D />}
-			renderRightAccessory={() => <Icon style={{ marginRight: -sizes.content }} onPress={noop} name="bell" size="t_title" />}
-			title="Live attendance"
-		/>
-		<View backgroundColor="primary" style={{ overflow: 'hidden', borderBottomEndRadius: sizes.contentLarge, borderBottomStartRadius: sizes.contentLarge }}>
-			<BoxSpace.D />
-			<TextSemi alignCenter size="x_big">{hour}</TextSemi>
-			<TextSemi alignCenter size="t_big">{date}</TextSemi>
-			<BoxSpace.F />
-			<Wave />
-		</View>
-		<BoxSpace.B />
-		<ScrollView>
-			<WrapperItem>
-				<TodaySchedules navigation={navigation} />
-				<BoxSpace.B />
-				<NextSchedules navigation={navigation} />
-			</WrapperItem>
-		</ScrollView>
-		<BoxSpace.B />
-		<WrapperItem row>
-			<Button flex onPress={clockIn}>CLOCK IN</Button>
-			<BoxSpace.B />
-			<Button color="secondary" onPress={clockOut} flex>CLOCK OUT</Button>
-		</WrapperItem>
-	</Container>
+	return <View backgroundColor="primary" style={{ overflow: 'hidden', borderBottomEndRadius: sizes.contentLarge, borderBottomStartRadius: sizes.contentLarge }}>
+		<BoxSpace.D />
+		<TextSemi alignCenter size="x_big">{hour}</TextSemi>
+		<TextSemi alignCenter size="t_big">{date}</TextSemi>
+		<BoxSpace.F />
+	</View>
 }
-
-export default Home
 
 const TodaySchedules = ({ navigation }) => {
 	const dispatch = useDispatch()
@@ -132,14 +136,14 @@ const NextSchedules = ({ navigation }) => {
 		<BoxSpace.B />
 		<ScrollView onLayout={({ nativeEvent: { layout } }) => setLayout(layout)} horizontal>
 			{upcoming3Days.rMap((key, _, isLast) => {
-				const data = SCHEDULES[key]
 				const date = moment(key)
+				const data = SCHEDULES[key]
 				const day = date.format('dddd')
 				const theDate = date.format('D MMM')
 				const width = layout.width * 80 / 100
 				const { location, clockIn, clockOut } = data ?? {}
 				return <>
-					<TouchableOpacity onPress={() => navigation.navigate('/schedule', data)}>
+					<TouchableOpacity onPress={() => navigation.navigate('/schedule', data ?? { date: key })}>
 						<Card flex width={width}>
 							<TextSemi>{day}</TextSemi>
 							<TextSemi size="t_big">{theDate}</TextSemi>

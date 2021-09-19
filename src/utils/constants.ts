@@ -12,6 +12,7 @@ export const colors = {
 	transparent: 'rgba(0,0,0,0)',
 	alertLight: '#FCF1C3',
 	blue: '#3C6EE3',
+	grey: '#B1B1B1',
 	darkGrey: '#8D9EBA',
 	greySoft: '#F4F4F4',
 	greyHard: '#D1D1D1',
@@ -49,12 +50,14 @@ export const fonts = {
 }
 
 export type BtnColor = Tuple<TypeProp<typeof colors>, 1 | 2 | 3>
-export type BtnKey = 'primary' | 'secondary' | 'logout' | 'transparent' | 'tPrimary' | 'tSecondary'
+export type BtnKey = 'tDanger' | 'success' | 'primary' | 'secondary' | 'logout' | 'transparent' | 'tPrimary' | 'tSecondary'
 export type ButtonColorsType = Record<BtnKey, BtnColor>
 export const buttonColors: ButtonColorsType = {
 	primary: ['primary', 'light', 'transparent'],
-	secondary: ['transparent', 'primary', 'primary'],
+	secondary: ['grey', 'light', 'transparent'],
 	logout: ['light', 'danger', 'danger'],
+	success: ['success', 'light', 'transparent'],
+	tDanger: ['transparent', 'danger', 'danger'],
 	transparent: ['transparent', 'dark', 'transparent'],
 	tPrimary: ['transparent', 'primary', 'transparent'],
 	tSecondary: ['transparent', 'dark', 'transparent'],

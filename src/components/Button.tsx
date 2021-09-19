@@ -11,11 +11,11 @@ export const Btn = createButton({
 			items: 'center',
 			justify: 'center',
 			textProps: {
-				size: 't_placeholder',
-				// font: 'Bold'
+				size: 't_default',
+				font: 'Bold'
 			},
 			style: [{
-				minHeight: sizes.box,
+				minHeight: sizes.content,
 				borderWidth: (props?.color ?? [])[2] ? 1 : 0,
 				borderRadius: sizes._radius,
 				padding: sizes.padding,

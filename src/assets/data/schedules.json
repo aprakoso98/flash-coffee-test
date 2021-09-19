@@ -1,24 +1,38 @@
 {
-    "2021-09-15": {
-        "id": "123456",
-        "date": "2021-09-15",
+    "2021-09-20": {
+        "date": "2021-09-20",
         "clockIn": "08:00",
         "clockOut": "17:00",
         "clockInTime": "",
         "clockOutTime": "",
         "location": "Mediterania garden residence",
-        "eventName": "",
-        "hasSchedule": false
+        "locationDetail": "Jl. Tanjung Duren Raya No.Kav 5-9, RT.3/RW.5, Tj. Duren Sel., Kec. Grogol petamburan, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11470"
     },
-    "2021-09-19": {
-        "id": "1234567",
-        "date": "2021-09-19",
+    "2021-09-21": {
+        "date": "2021-09-21",
         "clockIn": "08:00",
         "clockOut": "17:00",
-        "clockInTime": "07:57",
+        "clockInTime": "",
         "clockOutTime": "",
         "location": "Mediterania garden residence",
-        "eventName": "",
-        "hasSchedule": true
+        "locationDetail": "Jl. Tanjung Duren Raya No.Kav 5-9, RT.3/RW.5, Tj. Duren Sel., Kec. Grogol petamburan, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11470"
+    },
+    "2021-09-22": {
+        "date": "2021-09-22",
+        "clockIn": "08:00",
+        "clockOut": "17:00",
+        "clockInTime": "",
+        "clockOutTime": "",
+        "location": "Mediterania garden residence",
+        "locationDetail": "Jl. Tanjung Duren Raya No.Kav 5-9, RT.3/RW.5, Tj. Duren Sel., Kec. Grogol petamburan, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11470"
+    },
+    "2021-09-25": {
+        "date": "2021-09-25",
+        "clockIn": "08:00",
+        "clockOut": "17:00",
+        "clockInTime": "",
+        "clockOutTime": "",
+        "location": "Mediterania garden residence",
+        "locationDetail": "Jl. Tanjung Duren Raya No.Kav 5-9, RT.3/RW.5, Tj. Duren Sel., Kec. Grogol petamburan, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11470"
     }
 }

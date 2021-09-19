@@ -11,6 +11,7 @@ import ModalRoot from './components/ModalRoot';
 import { useEffect } from 'react';
 import { actionRoute, initStateRoute } from './redux/app';
 import { useLayoutEffect } from 'react';
+import { NativeBaseProvider } from 'native-base'
 
 const AppContainer = () => {
   const dispatch = useDispatch()
@@ -30,12 +31,14 @@ const AppContainer = () => {
 
 const App = () => {
   return <SafeAreaView backgroundColor="primary" flex>
-    <Root>
-      <StatusBar barStyle="dark-content" backgroundColor={Platform.OS === 'android' ? colors.dark : colors.light} />
-      <Provider store={store}>
-        <AppContainer />
-      </Provider>
-    </Root>
+    <NativeBaseProvider>
+      <Root>
+        <StatusBar barStyle="dark-content" backgroundColor={Platform.OS === 'android' ? colors.dark : colors.light} />
+        <Provider store={store}>
+          <AppContainer />
+        </Provider>
+      </Root>
+    </NativeBaseProvider>
   </SafeAreaView>
 }
 

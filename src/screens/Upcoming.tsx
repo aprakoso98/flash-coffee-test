@@ -1,6 +1,6 @@
 import moment from 'moment';
 import React from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, TouchableOpacity } from 'react-native';
 import { BoxSpace, Card, Container, Notification, View, Wrapper, WrapperItem } from 'src/components';
 import Button from 'src/components/Button';
 import Header from 'src/components/Header';
@@ -16,13 +16,12 @@ const Upcoming = ({ navigation, route }) => {
 	return <Container>
 		<Header
 			onPress={navigation.goBack}
-			renderRightAccessory={() => <Icon style={{ marginRight: -sizes.content }} onPress={noop} name="sync" size="t_title" />}
 			title="Upcoming schedule"
 		/>
 		<ScrollView>
 			<WrapperItem>
 				<BoxSpace.B />
-				<TextBold>APRIL 2021</TextBold>
+				<TextBold>{now.format('MMMM YYYY').toUpperCase()}</TextBold>
 				<BoxSpace.B />
 				{defaultWeekdays.rMap((key, _, isLast) => {
 					const data = SCHEDULES[key]
@@ -32,31 +31,33 @@ const Upcoming = ({ navigation, route }) => {
 					const theDate = date.format('D')
 					const isToday = date.format('YYYY-MM-DD') === now.format('YYYY-MM-DD')
 					return <>
-						<Wrapper>
-							<View itemsCenter width="20%">
-								<Text>{day.toUpperCase()}</Text>
-								<TextSemi>{theDate}</TextSemi>
-							</View>
-							<BoxSpace.A />
-							{data
-								? <Card flex>
-									<TextSemi numberOfLines={1}>{location}</TextSemi>
-									<BoxSpace.A />
-									<Wrapper itemsCenter>
-										<Icon size="t_placeholder" name="clock" />
+						<TouchableOpacity onPress={() => navigation.navigate('/schedule', data ?? { date: key })}>
+							<Wrapper>
+								<View itemsCenter width="20%">
+									<Text color="grey">{day.toUpperCase()}</Text>
+									<TextSemi color={isLast ? 'danger' : 'dark'}>{theDate}</TextSemi>
+								</View>
+								<BoxSpace.A />
+								{data
+									? <Card flex>
+										<TextSemi numberOfLines={1}>{location}</TextSemi>
 										<BoxSpace.A />
-										<TextPlaceholder font="SemiBold">{`${clockIn} - ${clockOut}`}</TextPlaceholder>
-										<BoxSpace.A />
-										{isToday && <Notification backgroundColor="danger">
-											<TextSemi color="light">TODAY</TextSemi>
-										</Notification>}
-										<View flex />
-									</Wrapper>
-								</Card>
-								: <Card flex itemsCenter justifyCenter>
-									<TextSemi alignCenter>No schedule</TextSemi>
-								</Card>}
-						</Wrapper>
+										<Wrapper itemsCenter>
+											<Icon size="t_placeholder" name="clock" />
+											<BoxSpace.A />
+											<TextPlaceholder font="SemiBold">{`${clockIn} - ${clockOut}`}</TextPlaceholder>
+											<BoxSpace.A />
+											{isToday && <Notification backgroundColor="danger">
+												<TextSemi color="light">TODAY</TextSemi>
+											</Notification>}
+											<View flex />
+										</Wrapper>
+									</Card>
+									: <Card flex itemsCenter justifyCenter>
+										<TextSemi alignCenter>No schedule</TextSemi>
+									</Card>}
+							</Wrapper>
+						</TouchableOpacity>
 						{!isLast && <BoxSpace.B />}
 					</>
 				})}

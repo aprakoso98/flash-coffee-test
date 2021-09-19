@@ -4,6 +4,7 @@ import { NavigationContainer, NavigationContainerRef } from '@react-navigation/n
 import Transition from './transition';
 import Home from 'src/screens/Home';
 import Upcoming from 'src/screens/Upcoming';
+import ScheduleView from 'src/screens/Schedule';
 
 export const Stack = createStackNavigator()
 
@@ -14,6 +15,7 @@ const AppRoute = () => {
 		<Stack.Navigator screenOptions={{ header: noop, cardStyleInterpolator: Transition.horizontalSlide }}>
 			<Stack.Screen name="/" component={Home} />
 			<Stack.Screen name="/upcoming" component={Upcoming} />
+			<Stack.Screen name="/schedule" component={ScheduleView} />
 		</Stack.Navigator>
 	</NavigationContainer>
 }

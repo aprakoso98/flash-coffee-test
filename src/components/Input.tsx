@@ -82,7 +82,7 @@ const Input = (props: InputProps) => {
 			<RAOccs />
 		</>,
 		rBAccs: RBccs && <>
-			<Divider color="alert" width="100%" />
+			<Divider color="alertLight" width="100%" />
 			<BoxSpace.A />
 			<View style={{ paddingHorizontal: sizes.padding }} width="100%">
 				<RBccs />
@@ -95,7 +95,7 @@ const Input = (props: InputProps) => {
 				<RTccs />
 			</View>
 			<BoxSpace.A />
-			<Divider color="alert" width="100%" />
+			<Divider color="alertLight" width="100%" />
 		</>,
 		rBOccs: RBOccs && <>
 			<BoxSpace.A />
@@ -110,7 +110,7 @@ const Input = (props: InputProps) => {
 			{Accessories.lAOccs}
 			<View
 				flex itemsCenter
-				backgroundColor={editable || editableLight ? 'light' : 'placeholderSoft'}
+				backgroundColor={editable || editableLight ? 'light' : 'grey'}
 				style={{
 					minHeight: sizes.box,
 					borderWidth: sizes._outlineWidth,
