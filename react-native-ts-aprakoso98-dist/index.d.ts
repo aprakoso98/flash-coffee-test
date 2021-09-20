@@ -17,3 +17,4 @@ export { useInterval, useToggle, useStateObject, useStateArray, useStateObjectV2
 export { useAnimated, createLayoutAnimationPresets } from './hooks/useAnimated';
 export { Root, modalInstance as MModal, ModalOpt } from './components/root';
 export { RawBottomSheet as RBSheet, SheetManager, RawBottomProps as RBSheetProps } from './components/commons/RawBottomSheet';
+export { default as useDebounce } from './hooks/debounce';

@@ -162,7 +162,7 @@ Number.prototype.getPercentage = function calculate(total = 0, dp = 2) {
 };
 Number.prototype.ratio = function (ratio) {
     ratio = ratio.replace(/\:/g, '/');
-    const height = this.toString().extractNumber();
+    const height = eval(this.toString());
     const width = height * eval(ratio);
     return { height, width };
 };
